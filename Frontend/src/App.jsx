@@ -1,13 +1,19 @@
-import { useState } from "react";
 import "./App.css";
-import { Main } from "./components/Main/Main";
+import { Routes, Route } from "react-router-dom";
+
+import { Login } from "./components/Login/Login";
+import { MainView } from "./components/Main/MainView";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <div className="App">
-      <Main />
+      <Routes>
+        <Route path="/" element={<MainView />}>
+          <Route index element={<Login />} />
+          {/*   <Route path="/Register" element={<Register />} />
+          <Route path="/ForgotPsw" element={<ForgotPsw />} /> */}
+        </Route>
+      </Routes>
     </div>
   );
 }

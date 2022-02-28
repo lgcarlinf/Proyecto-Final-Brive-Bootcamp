@@ -1,12 +1,12 @@
 import React from "react";
-import { Login } from "../Login/Login";
+import { Outlet } from "react-router-dom";
 import img from "../../assets/img-main.jpg";
 import { StyledMain } from "./styles";
 
-export const Main = () => {
+export const MainView = () => {
   return (
     <StyledMain>
-      <Login />
+      <Outlet />
       <img className="img-main" src={img} alt="img" />
     </StyledMain>
   );
