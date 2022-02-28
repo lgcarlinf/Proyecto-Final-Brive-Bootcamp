@@ -1,0 +1,6 @@
+E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.Database\bin\Debug\Brive.Bootcamp.Proyecto.Database.dacpac
+E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.Database\bin\Debug\Brive.Bootcamp.Proyecto.Database.dll
+E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.Database\bin\Debug\Brive.Bootcamp.Proyecto.Database.pdb
+E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.Database\obj\Debug\Brive.Bootcamp.Proyecto.Database.sqlproj.AssemblyReference.cache
+E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.Database\obj\Debug\Brive.Bootcamp.Proyecto.Database.dll
+E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.Database\obj\Debug\Brive.Bootcamp.Proyecto.Database.pdb
