@@ -2,6 +2,7 @@ import React from "react";
 import logo from "../../assets/logo.png";
 import { StyledLogin } from "./styles";
 import { AiFillUnlock } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   return (
@@ -30,7 +31,7 @@ export const Login = () => {
         </div>
       </form>
       <div className="container-create">
-        <button>Create an account</button>
+        <Link to="/register">Create an account</Link>
       </div>
     </StyledLogin>
   );
