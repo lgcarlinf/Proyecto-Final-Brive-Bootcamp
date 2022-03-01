@@ -47,7 +47,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsuarios(string id, Usuarios usuarios)
         {
-            if (id != usuarios.Correo)
+            if (id != usuarios.EMAIL)
             {
                 return BadRequest();
             }
@@ -78,14 +78,16 @@ namespace Brive.ProyectoFinal.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Usuarios>> PostUsuarios(Usuarios usuarios)
         {
+            usuarios.PASSWORD = EncriptacionPass.GetMD5(usuarios.PASSWORD);/// cifrado de Pass
             _context.Usuarios.Add(usuarios);
+
             try
             {
                 await _context.SaveChangesAsync();
             }
             catch (DbUpdateException)
             {
-                if (UsuariosExists(usuarios.Correo))
+                if (UsuariosExists(usuarios.EMAIL))
                 {
                     return Conflict();
                 }
@@ -95,7 +97,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
                 }
             }
 
-            return CreatedAtAction("GetUsuarios", new { id = usuarios.Correo }, usuarios);
+            return CreatedAtAction("GetUsuarios", new { id = usuarios.EMAIL }, usuarios);
         }
 
         // DELETE: api/Usuarios/5
@@ -116,14 +118,17 @@ namespace Brive.ProyectoFinal.Api.Controllers
 
         private bool UsuariosExists(string id)
         {
-            return _context.Usuarios.Any(e => e.Correo == id);
+            return _context.Usuarios.Any(e => e.EMAIL == id);
         }
+
         ///// Metodos Personalnzados para inico de sesion
-        // DELETE: api/Usuarios/login
+        
+        //[HttpPost]
         [HttpGet("login/{correo}/{password}")]
         public ActionResult<List<Usuarios>> GetInicioSesion(string correo, string password)
         {
-            var usuarios = _context.Usuarios.Where(usuario => usuario.Correo.Equals(correo) && usuario.Password.Equals(password)).ToList();
+            var passDes = EncriptacionPass.GetMD5(password);
+            var usuarios = _context.Usuarios.Where(usuario => usuario.EMAIL.Equals(correo) && usuario.PASSWORD.Equals(passDes)).ToList();
 
             if (usuarios == null)
             {
@@ -132,6 +137,5 @@ namespace Brive.ProyectoFinal.Api.Controllers
 
             return usuarios;
         }
-        
     }
 }
