@@ -1,0 +1,26 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a compilar
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles incidencias de datos
+       El tipo de la columna PASSWORD en la tabla [dbo].[USUARIOS] es  VARCHAR (200) NOT NULL, pero se va a cambiar a  NCHAR
+         (10) NOT NULL. Si la columna contiene datos no compatibles con el tipo  NCHAR (10) NOT NULL, podrían producirse pérdidas
+         de datos y errores en la implementación.
+
+** Acciones del usuario
+     Cambiar nombre
+       [dbo].[BUSQUEDAS].[IDBUSQUEDA] (Columna)
+       [dbo].[BUSQUEDAS].[EMPRESABUSCADA] (Columna)
+       [dbo].[BUSQUEDAS].[RESULTADOBUSQUEDA] (Columna)
+       [dbo].[BUSQUEDAS].[FECHABUSQUEDA] (Columna)
+     Modificar
+       [dbo].[USUARIOS] (Tabla)
+
+** Acciones de compatibilidad
+
+El tipo de la columna PASSWORD en la tabla [dbo].[USUARIOS] es  VARCHAR (200) NOT NULL, pero se va a cambiar a  NCHAR (10) NOT NULL. Si la columna contiene datos no compatibles con el tipo  NCHAR (10) NOT NULL, podrían producirse pérdidas de datos y errores en la implementación.
+Las bases de datos del proyecto y de destino tienen una configuración de intercalación diferente. Se pueden producir errores de implementación.
+

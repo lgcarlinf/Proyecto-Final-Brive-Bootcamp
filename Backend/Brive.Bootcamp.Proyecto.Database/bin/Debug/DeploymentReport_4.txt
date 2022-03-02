@@ -1,0 +1,31 @@
+﻿** Aspectos destacados
+     Tablas que se volverán a compilar
+       Ninguno
+     Índices clúster que se van a quitar
+       Ninguno
+     Índices clúster que se van a crear
+       Ninguno
+     Posibles incidencias de datos
+       La tabla [dbo].[BUSQUEDAS] se va a quitar y a crear de nuevo porque se han redefinido todas las columnas no calculadas
+         de la tabla.
+       El tipo de la columna PASSWORD en la tabla [dbo].[USUARIOS] es  VARCHAR (200) NOT NULL, pero se va a cambiar a  NCHAR
+         (10) NOT NULL. Si la columna contiene datos no compatibles con el tipo  NCHAR (10) NOT NULL, podrían producirse pérdidas
+         de datos y errores en la implementación.
+
+** Acciones del usuario
+     Quitar
+       restricción sin nombre en [dbo].[BUSQUEDAS] (Restricción DEFAULT)
+       [dbo].[FK_BUSQUEDA] (Clave externa)
+       [dbo].[BUSQUEDAS] (Tabla)
+     Crear
+       [dbo].[BUSQUEDAS] (Tabla)
+       Restricción DEFAULT: restricción sin nombre en [dbo].[BUSQUEDAS] (Restricción DEFAULT)
+     Modificar
+       [dbo].[USUARIOS] (Tabla)
+
+** Acciones de compatibilidad
+
+La tabla [dbo].[BUSQUEDAS] se va a quitar y a crear de nuevo porque se han redefinido todas las columnas no calculadas de la tabla.
+El tipo de la columna PASSWORD en la tabla [dbo].[USUARIOS] es  VARCHAR (200) NOT NULL, pero se va a cambiar a  NCHAR (10) NOT NULL. Si la columna contiene datos no compatibles con el tipo  NCHAR (10) NOT NULL, podrían producirse pérdidas de datos y errores en la implementación.
+Las bases de datos del proyecto y de destino tienen una configuración de intercalación diferente. Se pueden producir errores de implementación.
+
