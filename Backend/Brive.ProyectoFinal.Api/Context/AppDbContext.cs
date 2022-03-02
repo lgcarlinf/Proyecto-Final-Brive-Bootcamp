@@ -10,5 +10,6 @@ namespace Brive.ProyectoFinal.Api.Context
 
         }
         public DbSet<Usuarios> Usuarios { get; set; }
+        public DbSet<Busquedas> Busquedas { get; set; }
     }
 }

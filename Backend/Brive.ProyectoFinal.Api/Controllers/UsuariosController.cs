@@ -137,5 +137,23 @@ namespace Brive.ProyectoFinal.Api.Controllers
 
             return usuarios;
         }
+
+
+
+        [HttpPost("login")]
+        public async Task<ActionResult<Usuarios>> Index(Login objuserlogin)
+        {
+            objuserlogin.PASSWORD = EncriptacionPass.GetMD5(objuserlogin.PASSWORD);/// cifrado de Pass
+            var usuario = _context.Usuarios.Where(m => m.EMAIL == objuserlogin.EMAIL && m.PASSWORD == objuserlogin.PASSWORD).FirstOrDefault();
+            
+            if (usuario != null)
+            {
+                return CreatedAtAction("GetUsuarios", new { id = objuserlogin.EMAIL }, usuario); //throw;
+            }
+            else
+            {
+                    return Conflict();
+            }                    
+        }
     }
 }
