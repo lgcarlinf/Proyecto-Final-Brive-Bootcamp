@@ -1,16 +1,43 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { StyledHome } from "./styles";
-import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { DataContext } from "../../context/DataContext";
 
 export const Home = () => {
+  const { data, setData } = useContext(DataContext);
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    setData({
+      ...data,
+      nombre: user?.nombre,
+      email: user?.email,
+      token: localStorage.getItem("token"),
+      isLogged: true,
+    });
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.clear();
+    setData({
+      ...data,
+      nombre: "",
+      email: "",
+      token: "",
+      isLogged: false,
+    });
+    navigate("/");
+  };
+
   return (
     <StyledHome>
       <div className="nav">
         <img src={logo} alt="" />
         <div className="acc-options">
-          <Link to="/">Name</Link>
-          <button>Log Out</button>
+          <p>{data.nombre}</p>
+          <button onClick={handleLogout}>Log Out</button>
         </div>
       </div>
       <div className="content">

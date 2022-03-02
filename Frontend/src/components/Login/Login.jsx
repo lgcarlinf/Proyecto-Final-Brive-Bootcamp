@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import logo from "../../assets/logo.png";
+import axios from "axios";
 import { StyledLogin } from "./styles";
 import { AiFillUnlock } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { DataContext } from "../../context/DataContext";
 
 export const Login = () => {
   const [inputLogin, setInputLogin] = useState({
     email: "",
     password: "",
   });
+
+  const { data, setData } = useContext(DataContext);
+
+  let navigate = useNavigate();
 
   const handleChange = (e) => {
     setInputLogin({
@@ -19,11 +25,32 @@ export const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputLogin);
+
     setInputLogin({
       email: "",
       password: "",
     });
+    login();
+  };
+
+  const login = async () => {
+    const login = await axios.post(
+      "https://localhost:44322/api/Usuarios/login",
+      inputLogin
+    );
+    try {
+      const { nombre, email, password } = login.data;
+      localStorage.setItem("token", password);
+      localStorage.setItem("user", JSON.stringify({ nombre, email }));
+      setData({
+        ...data,
+        nombre,
+        isLogged: true,
+      });
+      navigate("/home");
+    } catch (error) {
+      console.log("Usuario y/o Contrase;a incorrecta");
+    }
   };
 
   return (
