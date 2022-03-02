@@ -23,6 +23,7 @@ export const Register = () => {
       "https://localhost:44322/api/Usuarios",
       inputRegister
     );
+    alert("Usuario registrado");
   };
 
   const handleChange = (e) => {

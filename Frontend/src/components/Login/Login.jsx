@@ -49,7 +49,7 @@ export const Login = () => {
       });
       navigate("/home");
     } catch (error) {
-      console.log("Usuario y/o Contrase;a incorrecta");
+      alert("Usuario y/o Contrase;a incorrecta");
     }
   };
 
