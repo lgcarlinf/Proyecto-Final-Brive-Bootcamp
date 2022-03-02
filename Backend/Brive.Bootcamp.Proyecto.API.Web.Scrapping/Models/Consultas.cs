@@ -11,13 +11,13 @@ namespace Brive.Bootcamp.Proyecto.API.Web.Scrapping.Models
 
     public class Consultas
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IDBUSQUEDA { get; set; }
 
         [Column("EMPRESABUSCADA")]
-        public string Empresa { get; set; }
+        public string EMPRESABUSCADA { get; set; }
 
         [Column("RESULTADOBUSQUEDA")]
-        public string Vacantes { get; set; }
+        public string RESULTADOBUSQUEDA { get; set; }
     }
 }

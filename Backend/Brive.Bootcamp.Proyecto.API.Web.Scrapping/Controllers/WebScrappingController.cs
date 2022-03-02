@@ -30,13 +30,5 @@ namespace Brive.Bootcamp.Proyecto.API.Web.Scrapping.Controllers
         {
             return _consulta.GetConsulta(empresa);
         }
-
-
-        [HttpPost]
-        [Route("post2")]
-        public bool GuardarConsulta(Consultas consulta)
-        {
-            return _consulta.GuardarConsulta(consulta);
-        }
     }
 }

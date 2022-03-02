@@ -20,14 +20,6 @@ namespace Brive.Bootcamp.Proyecto.API.Web.Scrapping.Service.Implementation
             _consultaRepositorio = consultaRepositorio;
         }
 
-        public bool GuardarConsulta(Consultas consulta)
-        {
-            if (consulta == null)
-                return false;
-            _consultaRepositorio.GuardarConsulta(consulta);
-            return true;
-        }
-
         public Consultas[] ObtenerConsulta()
         {
             List<Consultas> consultas = new List<Consultas>();
@@ -40,18 +32,27 @@ namespace Brive.Bootcamp.Proyecto.API.Web.Scrapping.Service.Implementation
         public string GetConsulta(string empresa) 
         {
             string url = $"https://www.occ.com.mx/empleos/de-{empresa}/";
+            string sinput;
             HtmlWeb oweb = new HtmlWeb();
-            HtmlDocument doc = oweb.Load(url);
-            HtmlNode input = doc.DocumentNode.SelectSingleNode("//body/div/div/div/div/div/div/div/div/div/p");
-            string sipunt = input.InnerText;
+            try
+            {
+                HtmlDocument doc = oweb.Load(url);
+                HtmlNode input = doc.DocumentNode.SelectSingleNode("//body/div/div/div/div/div/div/div/div/div/p");
+                sinput = input.InnerText;
 
-            Consultas consultas = new Consultas();
-            consultas.Empresa = empresa;
-            consultas.Vacantes = sipunt;
+                Consultas consultas = new Consultas();
+                consultas.EMPRESABUSCADA = empresa;
+                consultas.RESULTADOBUSQUEDA = sinput;
 
-            //GuardarConsulta(consultas);
+                _consultaRepositorio.GuardarConsulta(consultas);
+            }
+            catch (Exception e) 
+            {
+                sinput = "Busqueda incorrecta";
+            }
             
-            return sipunt;
+
+            return sinput;
         }        
     }
 }

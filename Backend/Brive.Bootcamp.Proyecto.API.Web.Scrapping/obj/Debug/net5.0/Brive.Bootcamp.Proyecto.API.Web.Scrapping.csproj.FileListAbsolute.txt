@@ -78,3 +78,4 @@ E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.API.Web.Scrapping\bin\Debug\net5.0\
 E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.API.Web.Scrapping\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.API.Web.Scrapping\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
 E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.API.Web.Scrapping\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+E:\Proyecto Bootcamp\Brive.Bootcamp.Proyecto.API.Web.Scrapping\obj\Debug\net5.0\Brive.Bootcamp.Proyecto.API.Web.Scrapping.csproj.AssemblyReference.cache
