@@ -100,7 +100,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
             }
             else
             {
-                if (ValidarCorreo(usuarios.EMAIL) & ValidarTexto(usuarios.NOMBRE) & ValidarTexto(usuarios.APELLIDOS))
+                if (ValidarCorreo(usuarios.EMAIL) & ValidarTexto(usuarios.NOMBRE))// & ValidarTexto(usuarios.APELLIDOS))
                 {
                     _context.Usuarios.Add(usuarios);
 
@@ -202,12 +202,13 @@ namespace Brive.ProyectoFinal.Api.Controllers
 
         private bool TextoVacio(string texto)
         {
-            if (String.IsNullOrWhiteSpace(texto))
+            if (String.IsNullOrEmpty(texto))
             {
                 return true;
             }
             return false;
         }
+        
 
         private bool ValidarCorreo(string texto)
         {
