@@ -7,4 +7,4 @@ build_property.PublishSingleFile =
 build_property.IncludeAllContentForSelfExtract = 
 build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
 build_property.RootNamespace = Brive.ProyectoFinal.Api
-build_property.ProjectDir = C:\BriveFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\
+build_property.ProjectDir = C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\

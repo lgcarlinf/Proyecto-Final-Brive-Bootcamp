@@ -81,9 +81,10 @@ namespace Brive.ProyectoFinal.Api.Controllers
             var nombre = busquedas.EMPRESA_BUSCADA;
 
             var resultado = WebScraping.GetConsulta(busquedas.EMPRESA_BUSCADA);
-            var numero = resultado.Substring(0, 3);
-            
-            
+            var arr = resultado.Split(' ');
+            var numero = arr[0];
+
+
             if (resultado == nombre)
             {
                 return Conflict();

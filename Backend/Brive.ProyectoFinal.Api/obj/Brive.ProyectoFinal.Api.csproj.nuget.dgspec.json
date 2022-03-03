@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\BriveFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj": {}
+    "C:\\Brive.ProyectoFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj": {}
   },
   "projects": {
-    "C:\\BriveFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj": {
+    "C:\\Brive.ProyectoFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\BriveFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj",
+        "projectUniqueName": "C:\\Brive.ProyectoFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj",
         "projectName": "Brive.ProyectoFinal.Api",
-        "projectPath": "C:\\BriveFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj",
+        "projectPath": "C:\\Brive.ProyectoFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj",
         "packagesPath": "C:\\Users\\T430\\.nuget\\packages\\",
-        "outputPath": "C:\\BriveFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\obj\\",
+        "outputPath": "C:\\Brive.ProyectoFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\T430\\AppData\\Roaming\\NuGet\\NuGet.Config",

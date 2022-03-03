@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y5wWRTIuJ8wRn5hRuk4JDcrvtCiWsALkaZaQKgj+SW1oc71GyI9N9aTNJ04hYP2N4OZppqmw5SEweSawWziK5w==",
+  "dgSpecHash": "Vr7fgQck7dOsnq/wpBvAeCbSe0pYpB4Txry7Du0WCLHIqfvy1GliCJV5to/C4pvpD4DaaeooxgPuUGrdlWjkgg==",
   "success": true,
-  "projectFilePath": "C:\\BriveFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj",
+  "projectFilePath": "C:\\Brive.ProyectoFinal\\Proyecto-Final-Brive-Bootcamp\\Backend\\Brive.ProyectoFinal.Api\\Brive.ProyectoFinal.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\T430\\.nuget\\packages\\htmlagilitypack\\1.11.42\\htmlagilitypack.1.11.42.nupkg.sha512",
     "C:\\Users\\T430\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
