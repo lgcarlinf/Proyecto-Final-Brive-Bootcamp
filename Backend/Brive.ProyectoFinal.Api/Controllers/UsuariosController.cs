@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Brive.ProyectoFinal.Api.Context;
 using Brive.ProyectoFinal.Api.Models;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace Brive.ProyectoFinal.Api.Controllers
 {
@@ -25,6 +27,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Usuarios>>> GetUsuarios()
         {
+            
             return await _context.Usuarios.ToListAsync();
         }
 
@@ -78,26 +81,72 @@ namespace Brive.ProyectoFinal.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Usuarios>> PostUsuarios(Usuarios usuarios)
         {
-            usuarios.PASSWORD = EncriptacionPass.GetMD5(usuarios.PASSWORD);/// cifrado de Pass
-            _context.Usuarios.Add(usuarios);
+            string fecha = usuarios.FECHANACIMIENTO.ToString();
+            usuarios.NOMBRE = ArreglarTexto(usuarios.NOMBRE);
+            usuarios.APELLIDOS = ArreglarTexto(usuarios.APELLIDOS);
 
-            try
+            if (ValidarPass(usuarios.PASSWORD))
             {
-                await _context.SaveChangesAsync();
+                usuarios.PASSWORD = EncriptacionPass.GetMD5(usuarios.PASSWORD);/// cifrado de Pass
             }
-            catch (DbUpdateException)
+            else
             {
-                if (UsuariosExists(usuarios.EMAIL))
+                return Ok("Password debe contener minimo 8 caracteres 1 masyuscula, 1 caracter especial ");
+            }
+
+            if (TextoVacio(usuarios.NOMBRE) | TextoVacio(usuarios.APELLIDOS) | TextoVacio(usuarios.EMAIL) | TextoVacio(fecha))
+            {
+                return Ok("Se requieren Todos los campos");
+            }
+            else
+            {
+                if (ValidarCorreo(usuarios.EMAIL) & ValidarTexto(usuarios.NOMBRE) & ValidarTexto(usuarios.APELLIDOS))
                 {
-                    return Conflict();
+                    _context.Usuarios.Add(usuarios);
+
+                    try
+                    {
+                        await _context.SaveChangesAsync();
+                    }
+                    catch (DbUpdateException)
+                    {
+                        if (UsuariosExists(usuarios.EMAIL))
+                        {
+                            return Conflict();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+
+                    return CreatedAtAction("GetUsuarios", new { id = usuarios.EMAIL }, usuarios);
                 }
                 else
                 {
-                    throw;
+                    return Ok("correo no Valido");
                 }
             }
+            //usuarios.PASSWORD = EncriptacionPass.GetMD5(usuarios.PASSWORD);/// cifrado de Pass
+            //_context.Usuarios.Add(usuarios);
 
-            return CreatedAtAction("GetUsuarios", new { id = usuarios.EMAIL }, usuarios);
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateException)
+            //{
+            //    if (UsuariosExists(usuarios.EMAIL))
+            //    {
+            //        return Conflict();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
+
+            //return CreatedAtAction("GetUsuarios", new { id = usuarios.EMAIL }, usuarios);
         }
 
         // DELETE: api/Usuarios/5
@@ -124,23 +173,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
         ///// Metodos Personalnzados para inico de sesion
         
         //[HttpPost]
-        [HttpGet("login/{correo}/{password}")]
-        public ActionResult<List<Usuarios>> GetInicioSesion(string correo, string password)
-        {
-            var passDes = EncriptacionPass.GetMD5(password);
-            var usuarios = _context.Usuarios.Where(usuario => usuario.EMAIL.Equals(correo) && usuario.PASSWORD.Equals(passDes)).ToList();
-
-            if (usuarios == null)
-            {
-                return NotFound();
-            }
-
-            return usuarios;
-        }
-
-
-
-        [HttpPost("login")]
+       [HttpPost("login")]
         public async Task<ActionResult<Usuarios>> Index(Login objuserlogin)
         {
             objuserlogin.PASSWORD = EncriptacionPass.GetMD5(objuserlogin.PASSWORD);/// cifrado de Pass
@@ -154,6 +187,59 @@ namespace Brive.ProyectoFinal.Api.Controllers
             {
                     return Conflict();
             }                    
+        }
+        private string ArreglarTexto(string texto)
+        {
+            TextInfo ti = CultureInfo.CurrentCulture.TextInfo;
+            texto = ti.ToTitleCase(texto);
+            texto = texto.Trim();
+            while (texto.Contains("  "))
+            {
+                texto = texto.Replace("  ", " ");
+            }
+            return texto;
+        }
+
+        private bool TextoVacio(string texto)
+        {
+            if (String.IsNullOrWhiteSpace(texto))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool ValidarCorreo(string texto)
+        {
+            string expRegularCorreo = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            Regex r = new Regex(expRegularCorreo);
+            if (r.IsMatch(texto))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool ValidarPass(string texto)
+        {
+            string expRegularPass = @"^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$";
+            Regex r = new Regex(expRegularPass);
+            if (r.IsMatch(texto))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool ValidarTexto(string texto)
+        {
+            string expRegularTextos = @"^[a-zA-Z\\s]+$";
+            Regex r = new Regex(expRegularTextos);
+            if (r.IsMatch(texto))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -20,12 +20,59 @@ namespace Brive.ProyectoFinal.Api.Controllers
         {
             _context = context;
         }
+        // GET: api/UsusarioBusquedas
+        //[HttpGet("UsuarioBusquedas")]
+        //public Task<ActionResult<IEnumerable<UsusarioBusqueda>>> UsusarioBusquedasAsync(UsusarioBusquedasController obj)
+        //{
+          
+        //    return  _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals(obj)).ToListAsync();// && usuario.PASSWORD.Equals(passDes)).ToList();
+            
+           
+        //}
+        /// <summary>
+        /// ///////////////////////
+        // GET: api/UsusarioBusquedas
+        [HttpPost("Busquedas")]
+        public async Task<ActionResult<IEnumerable<UsusarioBusqueda>>> Retorno(UsuarioBusqueda obj)
+        {
+            var email = obj.Email;
+            return await _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals(email)).ToListAsync();// && usuario.PASSWORD.Equals(passDes)).ToList();
+
+        }
+
+        //[HttpPost("BusquedasTabla")]
+        //public async Task<ActionResult<IEnumerable<UsusarioBusqueda>>> Retornotabla(UsuarioBusqueda obj)
+        //{
+        //    var email = obj.Email;
+
+        //    return await _context.Busquedas.Where(pas => pas.FK_USUARIO.Equals(email)).ToListAsync();
+        //    //    //return await _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals(email)).ToListAsync();// && usuario.PASSWORD.Equals(passDes)).ToList();
+
+        //    //
+         //}
+        [HttpGet("Busquedas2")]
+        public async Task<ActionResult<IEnumerable<UsusarioBusqueda>>> Retorno2()
+        {
+
+            var x= _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals("ncg@gmail.com")).ToListAsync();
+
+            return await x;
+
+        }
+
+        /// </summary>
+
+
 
         // GET: api/UsusarioBusquedas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UsusarioBusqueda>>> GetUsusarioBusquedas()
         {
+            //var res = _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals("ncg@gmai.com"));
+            //var res2 = res.ToListAsync();
+            //return await res2;
             return await _context.UsusarioBusquedas.ToListAsync();
+
         }
 
         // GET: api/UsusarioBusquedas/5
