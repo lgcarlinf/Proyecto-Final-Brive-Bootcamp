@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Brive.ProyectoFinal.Api.Context;
 using Brive.ProyectoFinal.Api.Models;
+using Brive.ProyectoFinal.Api.Controllers;
 
 namespace Brive.ProyectoFinal.Api.Controllers
 {
@@ -21,6 +22,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
             _context = context;
         }
 
+       
         // GET: api/Busquedas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Busquedas>>> GetBusquedas()
@@ -79,26 +81,42 @@ namespace Brive.ProyectoFinal.Api.Controllers
         public async Task<ActionResult<Busquedas>> PostBusquedas(Busquedas busquedas)
         {
             var nombre = busquedas.EMPRESA_BUSCADA;
-
-            var resultado = WebScraping.GetConsulta(busquedas.EMPRESA_BUSCADA);
-            var arr = resultado.Split(' ');
-            var numero = arr[0];
-
-
-            if (resultado == nombre)
+            if (TextoVacio(nombre))
             {
-                return Conflict();
+                return Ok("Se requiere el nombre de una empresa");
             }
             else
             {
-                busquedas.FECHA_BUSQUEDA = DateTime.Today;
-                busquedas.RESULTADO_BUSQUEDA = Int16.Parse(numero);
-                
-                _context.Busquedas.Add(busquedas);
-                await _context.SaveChangesAsync();
+                var resultado = WebScraping.GetConsulta(busquedas.EMPRESA_BUSCADA);
+                var arr = resultado.Split(' ');
+                var numero = arr[0];
 
-                return CreatedAtAction("GetBusquedas", new { id = busquedas.ID_BUSQUEDA }, busquedas);
+
+                if (resultado == nombre)
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    busquedas.FECHA_BUSQUEDA = DateTime.Today;
+                    busquedas.RESULTADO_BUSQUEDA = Int16.Parse(numero);
+
+                    _context.Busquedas.Add(busquedas);
+                    await _context.SaveChangesAsync();
+
+                    return CreatedAtAction("GetBusquedas", new { id = busquedas.ID_BUSQUEDA }, busquedas);
+
+                }
+            
             }
+        }
+        private bool TextoVacio(string texto)
+        {
+            if (String.IsNullOrWhiteSpace(texto))
+            {
+                return true;
+            }
+            return false;
         }
 
         // DELETE: api/Busquedas/5
@@ -121,5 +139,8 @@ namespace Brive.ProyectoFinal.Api.Controllers
         {
             return _context.Busquedas.Any(e => e.ID_BUSQUEDA == id);
         }
+
+        
+
+        }
     }
-}

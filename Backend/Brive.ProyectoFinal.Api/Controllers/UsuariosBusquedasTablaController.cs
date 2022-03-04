@@ -7,75 +7,69 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Brive.ProyectoFinal.Api.Context;
 using Brive.ProyectoFinal.Api.Models;
+using System.Reflection;
+using Nancy.Json;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
 
 namespace Brive.ProyectoFinal.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsusarioBusquedasController : ControllerBase
+    public class UsuariosBusquedasTablaController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public UsusarioBusquedasController(AppDbContext context)
+        public UsuariosBusquedasTablaController(AppDbContext context)
         {
             _context = context;
         }
         // GET: api/UsusarioBusquedas
-        //[HttpGet("UsuarioBusquedas")]
-        //public Task<ActionResult<IEnumerable<UsusarioBusqueda>>> UsusarioBusquedasAsync(UsusarioBusquedasController obj)
-        //{
-          
-        //    return  _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals(obj)).ToListAsync();// && usuario.PASSWORD.Equals(passDes)).ToList();
-            
-           
-        //}
-        /// <summary>
-        /// ///////////////////////
-        // GET: api/UsusarioBusquedas
+        
         [HttpPost("Busquedas")]
-        public async Task<ActionResult<IEnumerable<UsusarioBusqueda>>> Retorno(UsuarioBusqueda obj)
+        
+        public async Task<ActionResult<IEnumerable<Busquedas>>> Retorno(UsuarioBusqueda obj)
         {
             var email = obj.Email;
-            return await _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals(email)).ToListAsync();// && usuario.PASSWORD.Equals(passDes)).ToList();
+            var x = _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals(email)).ToListAsync();
+            
+            var r = _context.Busquedas.Where(resul => resul.ID_BUSQUEDA.Equals(2)).ToListAsync();
+            return await r; 
 
         }
 
-        //[HttpPost("BusquedasTabla")]
-        //public async Task<ActionResult<IEnumerable<UsusarioBusqueda>>> Retornotabla(UsuarioBusqueda obj)
+        //[HttpPost("Busquedas3")]
+        //public async Task<ActionResult<IEnumerable<Root>>> Retorno2(UsuarioBusqueda obj)
         //{
         //    var email = obj.Email;
+        //    var x = await _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals(email)).ToListAsync();
+        //    string w = x.ToString();
+        //    JArray root = JArray.Parse(w);
 
-        //    return await _context.Busquedas.Where(pas => pas.FK_USUARIO.Equals(email)).ToListAsync();
-        //    //    //return await _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals(email)).ToListAsync();// && usuario.PASSWORD.Equals(passDes)).ToList();
+        //    List<string> list = new List<string>();
+        //    foreach (JObject jObject in root)
+        //    {
+        //        list.Add($"{(int)jObject["Fk_BUSQUEDAS"]}");
+        //    }
+        //    Root datos = new Root();
+        //    datos.fK_BUSQUEDA = list[0]; 
 
-        //    //
-         //}
-        [HttpGet("Busquedas2")]
-        public async Task<ActionResult<IEnumerable<UsusarioBusqueda>>> Retorno2()
-        {
+            //list[1];
 
-            var x= _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals("ncg@gmail.com")).ToListAsync();
+        //    //var  myDeserializedClass = JsonConvert.DeserializeObject<List<Root>>(list[0].ToString());
 
-            return await x;
+        //    return list;
 
-        }
-
-        /// </summary>
-
-
-
-        // GET: api/UsusarioBusquedas
+        //}
+        // GET: api/UsuariosBusquedasTabla
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UsusarioBusqueda>>> GetUsusarioBusquedas()
         {
-            //var res = _context.UsusarioBusquedas.Where(pas => pas.FK_USUARIO.Equals("ncg@gmai.com"));
-            //var res2 = res.ToListAsync();
-            //return await res2;
             return await _context.UsusarioBusquedas.ToListAsync();
-
         }
 
-        // GET: api/UsusarioBusquedas/5
+        // GET: api/UsuariosBusquedasTabla/5
         [HttpGet("{id}")]
         public async Task<ActionResult<UsusarioBusqueda>> GetUsusarioBusqueda(int id)
         {
@@ -89,7 +83,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
             return ususarioBusqueda;
         }
 
-        // PUT: api/UsusarioBusquedas/5
+        // PUT: api/UsuariosBusquedasTabla/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUsusarioBusqueda(int id, UsusarioBusqueda ususarioBusqueda)
@@ -120,7 +114,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
             return NoContent();
         }
 
-        // POST: api/UsusarioBusquedas
+        // POST: api/UsuariosBusquedasTabla
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<UsusarioBusqueda>> PostUsusarioBusqueda(UsusarioBusqueda ususarioBusqueda)
@@ -131,7 +125,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
             return CreatedAtAction("GetUsusarioBusqueda", new { id = ususarioBusqueda.ID }, ususarioBusqueda);
         }
 
-        // DELETE: api/UsusarioBusquedas/5
+        // DELETE: api/UsuariosBusquedasTabla/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUsusarioBusqueda(int id)
         {

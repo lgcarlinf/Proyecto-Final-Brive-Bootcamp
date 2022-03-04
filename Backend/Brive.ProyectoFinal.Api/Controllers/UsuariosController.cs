@@ -83,16 +83,8 @@ namespace Brive.ProyectoFinal.Api.Controllers
         {
             string fecha = usuarios.FECHANACIMIENTO.ToString();
             usuarios.NOMBRE = ArreglarTexto(usuarios.NOMBRE);
-            usuarios.APELLIDOS = ArreglarTexto(usuarios.APELLIDOS);
-
-            if (ValidarPass(usuarios.PASSWORD))
-            {
-                usuarios.PASSWORD = EncriptacionPass.GetMD5(usuarios.PASSWORD);/// cifrado de Pass
-            }
-            else
-            {
-                return Ok("Password debe contener minimo 8 caracteres 1 masyuscula, 1 caracter especial ");
-            }
+            usuarios.APELLIDOS = ArreglarTexto(usuarios.APELLIDOS);         
+            
 
             if (TextoVacio(usuarios.NOMBRE) | TextoVacio(usuarios.APELLIDOS) | TextoVacio(usuarios.EMAIL) | TextoVacio(fecha))
             {
@@ -100,6 +92,15 @@ namespace Brive.ProyectoFinal.Api.Controllers
             }
             else
             {
+                if (ValidarPass(usuarios.PASSWORD))
+                {
+                    usuarios.PASSWORD = EncriptacionPass.GetMD5(usuarios.PASSWORD);/// cifrado de Pass
+                }
+                else
+                {
+                    return Ok("Password debe contener minimo 8 caracteres 1 masyuscula, 1 caracter especial ");
+                }
+
                 if (ValidarCorreo(usuarios.EMAIL) & ValidarTexto(usuarios.NOMBRE))// & ValidarTexto(usuarios.APELLIDOS))
                 {
                     _context.Usuarios.Add(usuarios);
@@ -120,7 +121,7 @@ namespace Brive.ProyectoFinal.Api.Controllers
                         }
                     }
 
-                    return CreatedAtAction("GetUsuarios", new { id = usuarios.EMAIL }, usuarios);
+                    return Ok("Usuario Registrado Correctamente");
                 }
                 else
                 {
@@ -178,14 +179,14 @@ namespace Brive.ProyectoFinal.Api.Controllers
         {
             objuserlogin.PASSWORD = EncriptacionPass.GetMD5(objuserlogin.PASSWORD);/// cifrado de Pass
             var usuario = _context.Usuarios.Where(m => m.EMAIL == objuserlogin.EMAIL && m.PASSWORD == objuserlogin.PASSWORD).FirstOrDefault();
-            
+            //var pass = objuserlogin
             if (usuario != null)
             {
                 return CreatedAtAction("GetUsuarios", new { id = objuserlogin.EMAIL }, usuario); //throw;
             }
             else
             {
-                    return Conflict();
+                    return Ok("Ususario o Contraseña incorrecto");
             }                    
         }
         private string ArreglarTexto(string texto)

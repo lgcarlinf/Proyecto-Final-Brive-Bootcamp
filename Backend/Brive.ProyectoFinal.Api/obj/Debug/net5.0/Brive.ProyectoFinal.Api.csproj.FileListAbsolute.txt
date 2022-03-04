@@ -271,4 +271,9 @@ C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal
 C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\obj\Debug\net5.0\ref\Brive.ProyectoFinal.Api.dll
 C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\obj\Debug\net5.0\Brive.ProyectoFinal.Api.pdb
 C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\obj\Debug\net5.0\Brive.ProyectoFinal.Api.genruntimeconfig.cache
+C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
+C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\bin\Debug\net5.0\Microsoft.Extensions.PlatformAbstractions.dll
+C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\bin\Debug\net5.0\Nancy.dll
+C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\bin\Debug\net5.0\Brive.ProyectoFinal.Api.Views.dll
 C:\Brive.ProyectoFinal\Proyecto-Final-Brive-Bootcamp\Backend\Brive.ProyectoFinal.Api\obj\Debug\net5.0\Brive.ProyectoFinal.Api.csproj.AssemblyReference.cache
