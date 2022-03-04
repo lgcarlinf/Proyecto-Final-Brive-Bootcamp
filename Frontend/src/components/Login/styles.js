@@ -32,6 +32,12 @@ export const StyledLogin = styled.div`
     flex-direction: column;
     align-items: center;
 
+    label {
+      width: 100%;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
     .input-user,
     .input-pass {
       display: block;
@@ -65,11 +71,11 @@ export const StyledLogin = styled.div`
       font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
-    }
+      transition: all 0.3s ease-in-out;
 
-    label {
-      color: #2e55fa;
-      font-size: 1.1rem;
+      &:active {
+        transform: scale(0.9);
+      }
     }
   }
 
@@ -89,6 +95,7 @@ export const StyledLogin = styled.div`
       font-size: 1.1rem;
       font-weight: bold;
       cursor: pointer;
+      transition: all 0.3s ease-in-out;
     }
   }
 

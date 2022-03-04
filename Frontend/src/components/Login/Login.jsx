@@ -34,20 +34,25 @@ export const Login = () => {
   };
 
   const login = async () => {
-    const login = await axios.post(
-      "https://localhost:44322/api/Usuarios/login",
-      inputLogin
-    );
     try {
-      const { nombre, email, password } = login.data;
-      localStorage.setItem("token", password);
-      localStorage.setItem("user", JSON.stringify({ nombre, email }));
-      setData({
-        ...data,
-        nombre,
-        isLogged: true,
-      });
-      navigate("/home");
+      const login = await axios.post(
+        "https://localhost:44322/api/Usuarios/login",
+        inputLogin
+      );
+
+      if (login.data.email) {
+        const { nombre, email, password } = login.data;
+        localStorage.setItem("token", password);
+        localStorage.setItem("user", JSON.stringify({ nombre, email }));
+        setData({
+          ...data,
+          nombre,
+          isLogged: true,
+        });
+        navigate("/home");
+      } else {
+        return alert(login.data);
+      }
     } catch (error) {
       alert("Usuario y/o Contrase;a incorrecta");
     }
@@ -62,7 +67,9 @@ export const Login = () => {
         <p>Enter your e-mail address and your password</p>
       </div>
       <form action="" onSubmit={handleSubmit}>
+        <label htmlFor="email">Email :</label>
         <input
+          id="email"
           className="input-user"
           type="text"
           placeholder="User Name"
@@ -70,7 +77,9 @@ export const Login = () => {
           value={inputLogin.email}
           onChange={handleChange}
         />
+        <label htmlFor="password">Password :</label>
         <input
+          id="password"
           className="input-pass"
           type="password"
           placeholder="Type Password"
@@ -81,11 +90,11 @@ export const Login = () => {
         <div className="login">
           <input className="input-submit" type="submit" value="Login" />
 
-          <label htmlFor="">
+          {/*  <label htmlFor="">
             {" "}
             <AiFillUnlock className="input-icon" />
             Forgot Password
-          </label>
+          </label> */}
         </div>
       </form>
       <div className="container-create">

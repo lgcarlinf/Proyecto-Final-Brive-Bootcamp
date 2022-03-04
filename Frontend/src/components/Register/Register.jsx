@@ -15,15 +15,34 @@ export const Register = () => {
 
   const users = async () => {
     const response = await axios.get("https://localhost:44322/api/Usuarios");
-    console.log(response.data);
+  };
+
+  const validate = () => {
+    if (
+      inputRegister.nombre === "" ||
+      inputRegister.apellidos === "" ||
+      inputRegister.email === "" ||
+      inputRegister.fechanacimiento === "" ||
+      inputRegister.password === ""
+    ) {
+      alert("Todos los campos son obligatorios");
+      return false;
+    } else {
+      return true;
+    }
   };
 
   const register = async () => {
-    const response = await axios.post(
-      "https://localhost:44322/api/Usuarios",
-      inputRegister
-    );
-    alert("Usuario registrado");
+    try {
+      const response = await axios.post(
+        "https://localhost:44322/api/Usuarios",
+        inputRegister
+      );
+
+      alert(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleChange = (e) => {
@@ -35,7 +54,7 @@ export const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /*     console.log(inputRegister); */
+
     setInputRegister({
       nombre: "",
       apellidos: "",

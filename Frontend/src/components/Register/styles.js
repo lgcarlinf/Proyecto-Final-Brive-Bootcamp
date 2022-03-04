@@ -83,6 +83,15 @@ export const StyledRegister = styled.div`
         border-radius: 3px;
         font-weight: bold;
         cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: #6f6f6f;
+          color: #fff;
+        }
+
+        &:active {
+          transform: scale(0.9);
+        }
       }
 
       input {
@@ -95,6 +104,11 @@ export const StyledRegister = styled.div`
         font-weight: bolder;
         font-size: 0.96rem;
         cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        &:active {
+          transform: scale(0.9);
+        }
       }
     }
   }
